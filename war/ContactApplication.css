@@ -4,15 +4,19 @@ body {
   padding: 10px;
 }
 
+table td{
+  border-radius: 3px;
+  text-align: center;
+}
+
 /* stock list header row */
-.watchListHeader {
-  background-color: #2062B8;
-  color: White;
-  font-style: italic;
+h1{
+   font-size: 30px;
+   background-color: #9ec1ff;
 }
 
 .watchList {
-  border: 10px solid silver;
+  border: 5px solid silver;
   padding: 2px;
   margin-bottom:60px;
 }
@@ -35,38 +39,75 @@ body {
 
 .gwt-DialogBox-style{
 	left: 50px;
-    top: 20px;
+  top: 20px;
 }
 
 
 .displayed.DialogBox{
 	
 	left: 50%;
-    top: 20%;
+  top: 20%;
 	
 }
 .displayed {
      margin: 0 auto;
-     
-      }
+}
       
 .addcontactButton
 {
-	border: none;
-    color: white;
+    border: none;
+    color: black;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
+    font-size: 17.5px;
     cursor: pointer;
     position: relative;
-
-    left: 550px;
-    top: 0px;
-    
+    background-color: #9ec1ff;
+    border-radius: 10px;
+    left: 450px;
+    height: 30px;
+    width: 150px;
+    -webkit-transition: all 0.7s ease;
+    -moz-transition: all 0.7s ease;
+    -o-transition: all 0.7s ease;
 }      
 
+.addcontactButton:hover{
+  font-size: 1.6em;
+  width: 175px;
+  height: 40px;
+}
+
+.contactButton{
+  margin: 0;
+  width: 100px;
+  text-decoration: none;
+  cursor: pointer;
+  cursor: hand;
+  font-size: small;
+  background: url("images/hborder.png") repeat-x 0px -2077px;
+  border: 1px solid #bbb;
+  border-bottom: 1px solid #a0a0a0;
+  border-radius: 5px;
+  background-color: #e4e6e8;
+  -moz-border-radius: 5px;
+}
+
+.contactButton:hover{
+  background-color: #eaf2fb;
+}
+
+.watchListHeader {
+    background-color: #9ec1ff;
+    color: black;
+    font-style: italic;
+    font-size: 15px;
+}
+
+tr{
+  width: 50px;
+}
 
 /* /** Example rules used by the template application (remove for your app) */ */
 /* h1 { */
