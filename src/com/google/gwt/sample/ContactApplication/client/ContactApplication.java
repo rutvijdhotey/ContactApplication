@@ -1,5 +1,6 @@
 package com.google.gwt.sample.ContactApplication.client;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
@@ -33,7 +34,7 @@ public class ContactApplication implements EntryPoint{
 	  protected static HorizontalPanel buttonPaneledit = new HorizontalPanel();	 
 	  protected static HorizontalPanel addcontactPanel = new HorizontalPanel(); 
 	  
-	  private Button addcontactButton = new Button("Add Contact");
+	  private Button addcontactButton = new Button("Add");
 	  static FormPanel form= new FormPanel();
 	  public static DialogBox dialog=new DialogBox();
 	  public static DialogBox dialogedit=new DialogBox();
@@ -64,102 +65,100 @@ public class ContactApplication implements EntryPoint{
 		  contactsFlexTable.getColumnFormatter().setWidth(3, "100px");
 		  contactsFlexTable.getColumnFormatter().setWidth(4, "100px");
 		  contactsFlexTable.getColumnFormatter().setWidth(5, "100px");
-
-		  	contactsFlexTable.setText(0, 0, "Name  ");
-		    contactsFlexTable.setText(0, 1, "Job Title");
-		    contactsFlexTable.setText(0, 2, "Age");
-		    contactsFlexTable.setText(0, 3, "Group");  
-		    contactsFlexTable.setText(0, 4, "Manager");
-		    contactsFlexTable.getRowFormatter().addStyleName(0, "watchListHeader");
-		    contactsFlexTable.addStyleName("watchList");
+		  contactsFlexTable.setText(0, 0, "Name  ");
+		  contactsFlexTable.setText(0, 1, "Job Title");
+		  contactsFlexTable.setText(0, 2, "Age");
+		  contactsFlexTable.setText(0, 3, "Group");  
+		  contactsFlexTable.setText(0, 4, "Manager");
+		  contactsFlexTable.getRowFormatter().addStyleName(0, "watchListHeader");
+		  contactsFlexTable.addStyleName("watchList");
 		  
-		    addcontactButton.removeStyleName("gwt-Button");
-		    addcontactButton.addStyleName("addcontactButton");
+		  addcontactButton.removeStyleName("gwt-Button");
+		  addcontactButton.addStyleName("addcontactButton");
 		   
-		    //addPanel (Add Contact Button)
-		    addPanel.add(addcontactButton);
-		    addPanel.setCellHorizontalAlignment(addcontactButton,HasHorizontalAlignment.ALIGN_RIGHT);
-		    addPanel.add(addcontactPanel);
-		    addPanel.addStyleName("addPanel");
-		    
-		    // Assemble Main panel.
-		    mainPanel.add(addPanel); 
-		    mainPanel.add(contactsFlexTable);
-		    mainPanel.addStyleName("displayed");
+	      //addPanel (Add Contact Button)
+	      addPanel.add(addcontactButton);
+	      addPanel.setCellHorizontalAlignment(addcontactButton,HasHorizontalAlignment.ALIGN_RIGHT);
+	      addPanel.add(addcontactPanel);
+	      addPanel.addStyleName("addPanel");
+	    
+		  // Assemble Main panel.
+		  mainPanel.add(addPanel); 
+		  mainPanel.add(contactsFlexTable);
+		  mainPanel.addStyleName("displayed");
 		   
-		    // Add to Root
-		    RootPanel.get("Contacts").add(mainPanel);
-		   
-		    
-		    //INITIALISE WITH 3 CONTACTS
-		    String currentname= "Contact 1";
-		    contacts= new ArrayList<String>();
-		    contacts.add("Managing Director");
-		    contacts.add("34");
-		    contacts.add("Management");
-		    contacts.add("Y");
-		  
-		    Sorted.put(currentname, contacts);
-		    
-		    currentname="Contact 2";
-		    contacts= new ArrayList<String>();
-		    contacts.add("CFO");
-		    contacts.add("44");
-		    contacts.add("Management");
-		    contacts.add("Y");
-		  
-		    Sorted.put(currentname, contacts);
-			     
-		    currentname= "Contact 3";
-		    contacts= new ArrayList<String>();
-		    contacts.add("Engineering Intern");
-		    contacts.add("21");
-		    contacts.add("Engineering");
-		    contacts.add("N");
-		  
-		    Sorted.put(currentname, contacts);
-			
-		    // Entries in the FLEX TABLE
-		    for(String key : Sorted.keySet()) {
-    			final int row1 = contactsFlexTable.getRowCount();
+		  // Add to Root
+		  RootPanel.get("Contacts").add(mainPanel);
+		       
+		  //INITIALISE WITH 3 CONTACTS
+		  String currentname= "Contact 1";
+		  contacts= new ArrayList<String>();
+		  contacts.add("Managing Director");
+		  contacts.add("34");
+		  contacts.add("Management");
+		  contacts.add("Y");
+	  
+		  Sorted.put(currentname, contacts);
+	    
+		  currentname="Contact 2";
+		  contacts= new ArrayList<String>();
+		  contacts.add("CFO");
+		  contacts.add("44");
+		  contacts.add("Management");
+		  contacts.add("Y");
+	  
+		  Sorted.put(currentname, contacts);
+		     
+		  currentname= "Contact 3";
+		  contacts= new ArrayList<String>();
+		  contacts.add("Engineering Intern");
+		  contacts.add("21");
+		  contacts.add("Engineering");
+		  contacts.add("N");
+	  
+		  Sorted.put(currentname, contacts);
+		
+		  // Entries in the FLEX TABLE
+		  for(String key : Sorted.keySet()) {
+			final int row1 = contactsFlexTable.getRowCount();
     			
-		    	contacts= Sorted.get(key);
-    			contactsFlexTable.setText(row1, 0, key);
-				contactsFlexTable.setText(row1, 1, contacts.get(0));
-				contactsFlexTable.setText(row1, 2, contacts.get(1));
-				contactsFlexTable.setText(row1, 3, contacts.get(2));
-				contactsFlexTable.setText(row1, 4, contacts.get(3));
+		    contacts= Sorted.get(key);
+    		contactsFlexTable.setText(row1, 0, key);
+			contactsFlexTable.setText(row1, 1, contacts.get(0));
+			contactsFlexTable.setText(row1, 2, contacts.get(1));
+			contactsFlexTable.setText(row1, 3, contacts.get(2));
+			contactsFlexTable.setText(row1, 4, contacts.get(3));
 				
-				delContact del = new delContact();
-				del.putdelete(row1);   
-				editContact ed = new editContact();
-				ed.putedit(row1);	
-		    }
+			ExistingUser del = new ExistingUser();
+			del.putdelete(row1);   
+			ExistingUser ed = new ExistingUser();
+			ed.putedit(row1);	
+		  }
 
 		    //ONClick Method for Add Contact Method
-		  		addcontactButton.addClickHandler(new ClickHandler() {
-		        public void onClick(ClickEvent event) {
-		         addindata();
-		        }
-		      });
+		  	addcontactButton.addClickHandler(new ClickHandler() {
+			    public void onClick(ClickEvent event) {
+			    	addindata();
+			    }
+		    });
 		    
-		    }
+	}
 	  
-	// Data Structure Update....
+	  // Data Structure Update....
 	  public static ArrayList<String> parsearraylist(String a, String b, String c,String d) {
-			contacts= new ArrayList<String>();
-		  	contacts.add(a);
-			contacts.add(b);
-			contacts.add(c);
-			contacts.add(d);
-			return contacts;
-	  		}
+		contacts= new ArrayList<String>();
+	  	contacts.add(a);
+	  	contacts.add(b);
+		contacts.add(c);
+		contacts.add(d);
+		
+		return contacts;
+	}
 	  
 	  // Add Method : After you click Add Contact 
 	  public void addindata(){
-		  addContact n = new addContact();   
-	  }
-	 	  	  	
+		  NewUser n = new NewUser();   
+	  } 	  	  	
 }
 
 

@@ -6,15 +6,19 @@ body {
 
 table td{
   border-radius: 3px;
-  text-align: center;
+  text-align: center; 
 }
 
 /* stock list header row */
 h1{
-   font-size: 30px;
-   background-color: #9ec1ff;
+   text-align: center;
 }
 
+.watchListHeader td{
+	font-weight: bolder;
+	font-size:1.1em;
+	border-style: none;
+}
 .watchList {
   border: 5px solid silver;
   padding: 2px;
@@ -42,7 +46,10 @@ h1{
   top: 20px;
 }
 
-
+p{
+  font-size: 15px;
+  text-align: center;
+}
 .displayed.DialogBox{
 	
 	left: 50%;
@@ -65,7 +72,7 @@ h1{
     position: relative;
     background-color: #9ec1ff;
     border-radius: 10px;
-    left: 450px;
+    left: 585px;
     height: 30px;
     width: 150px;
     -webkit-transition: all 0.7s ease;
@@ -74,9 +81,8 @@ h1{
 }      
 
 .addcontactButton:hover{
-  font-size: 1.6em;
-  width: 175px;
-  height: 40px;
+      background-color: #0066cc;
+    color: white;
 }
 
 .contactButton{
@@ -101,12 +107,12 @@ h1{
 .watchListHeader {
     background-color: #9ec1ff;
     color: black;
-    font-style: italic;
+    font-style: bold;
     font-size: 15px;
 }
 
-tr{
-  width: 50px;
+.watchList td{
+  height: 50px;
 }
 
 /* /** Example rules used by the template application (remove for your app) */ */
