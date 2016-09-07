@@ -2,6 +2,7 @@ package com.google.gwt.sample.ContactApplication.client;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
@@ -11,11 +12,10 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-
 public class ExistingUser extends ContactApplication {
 
 	// Delete Button Method
-	  public static void putdelete(int r) {
+	  public void putdelete(int r) {
 		  int row= r;
 		  Button removecontactButton = new Button("Delete");
 		  removecontactButton.removeStyleName("gwt-Button");
@@ -33,7 +33,7 @@ public class ExistingUser extends ContactApplication {
 	  }	  
 	
 	  // Edit Button Method
-	  public static void putedit(int r) {
+	  public void putedit(int r) {
 		 int row= r;
 		 Button editcontactButton = new Button("Edit");
 		 editcontactButton.removeStyleName("gwt-Button");
@@ -42,7 +42,7 @@ public class ExistingUser extends ContactApplication {
 		 
 		public void onClick(ClickEvent event) {
 			int rowIndex = contactsFlexTable.getCellForEvent(event).getRowIndex();
-		    final String edit= contactsFlexTable.getFlexCellFormatter().getElement(rowIndex, 0).getInnerHTML();
+		    final String edit= contactsFlexTable.getFlexCellFormatter().getElement(rowIndex, 0).getInnerText();
 		    contacts= Sorted.get(edit); 
 		    dialogedit= new DialogBox();
 		    dialogedit.setGlassEnabled(true);
@@ -166,7 +166,8 @@ public class ExistingUser extends ContactApplication {
 						        		 
 		        		 Sorted.remove(edit);
 			        	 
-		        		 final String names= newTextBox.getText();
+		        		 String names= newTextBox.getText();
+		        		 String name =  SafeHtmlUtils.htmlEscape(names);
 		        		 final String jobs= jobedit.getText();
 		        		 final String age= lbedit.getSelectedItemText();
 
@@ -180,13 +181,15 @@ public class ExistingUser extends ContactApplication {
 				   	    	 manager= val;
 					   	 }
 				   	    
-				   	     if (Sorted.containsKey(names)) {
+				   	     if (Sorted.containsKey(name)) {
 								Window.alert("Contact Already Present");
 								dialogedit.show();
 						} else {
 			        		contacts=parsearraylist(jobs,age,gredit,manager);
-			        		Sorted.put(names, contacts);
-			        		contactsFlexTable.clear();
+			        		Sorted.put(name, contacts);
+			        		for(int i = 1; i< contactsFlexTable.getRowCount() ;i++ ){
+			        			contactsFlexTable.removeRow(i);
+			        		}	
 			        		int row=1;
 			        		for(String key : Sorted.keySet()) {
 			        			contacts= Sorted.get(key);
@@ -199,6 +202,7 @@ public class ExistingUser extends ContactApplication {
 								putedit(row);
 								row=row+1;
 			        		}
+			        		applyDataRowStyles();
 						}	
 				   	 }		
 		    	 }

@@ -5,7 +5,6 @@ body {
 }
 
 table td{
-  border-radius: 3px;
   text-align: center; 
 }
 
@@ -19,10 +18,12 @@ h1{
 	font-size:1.1em;
 	border-style: none;
 }
+
 .watchList {
   border: 5px solid silver;
   padding: 2px;
   margin-bottom:60px;
+  border-collapse: collapse;
 }
 
 .addPanel {
@@ -52,8 +53,8 @@ p{
 }
 .displayed.DialogBox{
 	
-	left: 50%;
-  top: 20%;
+	  left: 50%;
+	  top: 20%;
 	
 }
 .displayed {
@@ -72,13 +73,24 @@ p{
     position: relative;
     background-color: #9ec1ff;
     border-radius: 10px;
-    left: 585px;
+    left: 715px;
     height: 30px;
     width: 150px;
     -webkit-transition: all 0.7s ease;
     -moz-transition: all 0.7s ease;
     -o-transition: all 0.7s ease;
-}      
+}
+      
+.FlexTable-OddRow {
+  background-color: #f9f8f8;
+  border-style: outset;
+}
+
+.FlexTable-EvenRow {
+  background-color:  #e2e0e0;
+    border-style: outset;
+  
+}
 
 .addcontactButton:hover{
       background-color: #0066cc;
@@ -111,8 +123,12 @@ p{
     font-size: 15px;
 }
 
+
+
 .watchList td{
   height: 50px;
+  width: 120px;
+
 }
 
 /* /** Example rules used by the template application (remove for your app) */ */

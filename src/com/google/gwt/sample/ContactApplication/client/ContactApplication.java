@@ -3,13 +3,13 @@ package com.google.gwt.sample.ContactApplication.client;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeMap;
 
 //All imports 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -17,11 +17,11 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.HTMLTable;
 
 //Entry Class
 public class ContactApplication implements EntryPoint{
@@ -51,8 +51,7 @@ public class ContactApplication implements EntryPoint{
 	  
 	  //DataStructures Used
 	  static ArrayList<String> contacts = new ArrayList<String>();
-	  private static HashMap<String, ArrayList<String>> Datastore= new HashMap<String, ArrayList<String>>();
-	  static TreeMap<String, ArrayList<String>> Sorted= new TreeMap<String, ArrayList<String>>(Datastore);
+	  public static Map<String, ArrayList<String>> Sorted= new TreeMap<String, ArrayList<String>>(String.CASE_INSENSITIVE_ORDER);
 	 
 	  final String removal = new String("");
 	 
@@ -70,6 +69,8 @@ public class ContactApplication implements EntryPoint{
 		  contactsFlexTable.setText(0, 2, "Age");
 		  contactsFlexTable.setText(0, 3, "Group");  
 		  contactsFlexTable.setText(0, 4, "Manager");
+		  contactsFlexTable.setText(0, 5, "");
+		  contactsFlexTable.setText(0, 6, "");
 		  contactsFlexTable.getRowFormatter().addStyleName(0, "watchListHeader");
 		  contactsFlexTable.addStyleName("watchList");
 		  
@@ -91,7 +92,7 @@ public class ContactApplication implements EntryPoint{
 		  RootPanel.get("Contacts").add(mainPanel);
 		       
 		  //INITIALISE WITH 3 CONTACTS
-		  String currentname= "Contact 1";
+		  String currentname= "Tim Cook";
 		  contacts= new ArrayList<String>();
 		  contacts.add("Managing Director");
 		  contacts.add("34");
@@ -100,7 +101,7 @@ public class ContactApplication implements EntryPoint{
 	  
 		  Sorted.put(currentname, contacts);
 	    
-		  currentname="Contact 2";
+		  currentname="Steve Jobs";
 		  contacts= new ArrayList<String>();
 		  contacts.add("CFO");
 		  contacts.add("44");
@@ -109,7 +110,7 @@ public class ContactApplication implements EntryPoint{
 	  
 		  Sorted.put(currentname, contacts);
 		     
-		  currentname= "Contact 3";
+		  currentname= "Elon Musk";
 		  contacts= new ArrayList<String>();
 		  contacts.add("Engineering Intern");
 		  contacts.add("21");
@@ -119,10 +120,10 @@ public class ContactApplication implements EntryPoint{
 		  Sorted.put(currentname, contacts);
 		
 		  // Entries in the FLEX TABLE
+		  int row1 = 1;
 		  for(String key : Sorted.keySet()) {
-			final int row1 = contactsFlexTable.getRowCount();
-    			
-		    contacts= Sorted.get(key);
+			
+			  contacts= Sorted.get(key);
     		contactsFlexTable.setText(row1, 0, key);
 			contactsFlexTable.setText(row1, 1, contacts.get(0));
 			contactsFlexTable.setText(row1, 2, contacts.get(1));
@@ -131,9 +132,14 @@ public class ContactApplication implements EntryPoint{
 				
 			ExistingUser del = new ExistingUser();
 			del.putdelete(row1);   
-			ExistingUser ed = new ExistingUser();
-			ed.putedit(row1);	
+			//ExistingUser ed = new ExistingUser();
+			del.putedit(row1);	
+			
+			row1++;
+			
 		  }
+		  
+		  applyDataRowStyles();
 
 		    //ONClick Method for Add Contact Method
 		  	addcontactButton.addClickHandler(new ClickHandler() {
@@ -155,6 +161,35 @@ public class ContactApplication implements EntryPoint{
 		return contacts;
 	}
 	  
+	  //Function to handle HTML scripts
+	  protected static String escapeHTML(String s) {
+		    StringBuilder out = new StringBuilder(Math.max(16, s.length()));
+		    for (int i = 0; i < s.length(); i++) {
+		        char c = s.charAt(i);
+		        if (c > 127 || c == '"' || c == '<' || c == '>' || c == '&') {
+		        	//Do nothing
+		        } else {
+		            out.append(c);
+		        }
+		    }
+		    return out.toString();
+		}
+	  
+	  
+	  protected void applyDataRowStyles() {
+		    HTMLTable.RowFormatter rf = contactsFlexTable.getRowFormatter();
+		    for (int row = 1; row < contactsFlexTable.getRowCount(); ++row) {
+		      if ((row % 2) != 0) {
+		    	rf.removeStyleName(row, "FlexTable-EvenRow");
+		        rf.addStyleName(row, "FlexTable-OddRow");
+		      }
+		      else {
+		    	rf.removeStyleName(row, "FlexTable-OddRow");
+		        rf.addStyleName(row, "FlexTable-EvenRow");
+		      }
+		    }
+		  }
+	 
 	  // Add Method : After you click Add Contact 
 	  public void addindata(){
 		  NewUser n = new NewUser();   

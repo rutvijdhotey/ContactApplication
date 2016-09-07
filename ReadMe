@@ -39,8 +39,7 @@ ContactApplication/
 4. I hope you find the application satisfactory and i am glad i got to learn so much while building the same. Let me know where all i can improve and if i went wrong. 
 
 NOTE: 
-I also tried implementing the SAFEHTMLUTIL features for security measures. I understand how important security is for such web applications , but unfortunately i could implement it without hindering some of the other features, in short i could not find the bug that kept me from doing it. Kindly accept my apologies for not being able to do so, but i would definitely keep working on it.
-
+I also implemented the SAFEHTMLUTIL features for security measures. I understand how important security is for such web applications ,and i could implement it to protect HTML entries from hindering some of the other features.
 
 Thank You,
 Rutvij Dhotey. :) 

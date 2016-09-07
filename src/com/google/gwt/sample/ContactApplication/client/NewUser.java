@@ -2,6 +2,7 @@ package com.google.gwt.sample.ContactApplication.client;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
@@ -128,7 +129,8 @@ public class NewUser extends ContactApplication{
 		        		 }
 		        		 dialog.show();
 		        	} else {
-		        		final String names= newSymbolTextBox.getText();
+		        		String names= newSymbolTextBox.getText();
+		        		String name =  SafeHtmlUtils.htmlEscape(names);
 		        		final String jobs= job.getText();
 		        		final String age= lb.getSelectedItemText();
 		        		final String gr=group.getSelectedItemText();
@@ -141,18 +143,20 @@ public class NewUser extends ContactApplication{
 		        			final String val= "N";
 		        			manager= val;
 		        		}
-		   		if (Sorted.containsKey(names)) {
+		   		if (Sorted.containsKey(name)) {
 						Window.alert("Contact Already Present");
 						dialog.show();
 				} else {
 	        		contacts=parsearraylist(jobs,age,gr,manager);
-	        		Sorted.put(names, contacts);
-	        		contactsFlexTable.clear();
+	        		Sorted.put(name, contacts);
+	        		for(int i = 1; i< contactsFlexTable.getRowCount() ;i++ ){
+	        			contactsFlexTable.removeRow(i);
+	        		}	
 	        		int row=1;
 	        		for(String key : Sorted.keySet()) {
 	        			contacts= Sorted.get(key);
 	        			contactsFlexTable.setText(row, 0, key);
-						contactsFlexTable.setText(row, 1, contacts.get(0));
+						contactsFlexTable.setText(row, 1, contacts.get(1));
 						contactsFlexTable.setText(row, 2, contacts.get(1));
 						contactsFlexTable.setText(row, 3, contacts.get(2));
 						contactsFlexTable.setText(row, 4, contacts.get(3));
@@ -162,6 +166,7 @@ public class NewUser extends ContactApplication{
 						ed.putedit(row);
 						row=row+1;
 	        		}
+	        		applyDataRowStyles();
 				 }	
 		       }		
 		    }
