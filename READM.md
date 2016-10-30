@@ -1,4 +1,4 @@
-ReadMe
+## CONTACT APPLICATION
 
 1. The complete application is build using gwt techniques.
 	I have made 2 basic Classes for the 3 basic buttons:  Add Contact, Edit and Delete. The three methods are as follows : 
@@ -16,27 +16,24 @@ ReadMe
 
 2. Styling and UI : 
 
-I have used CSS to style the elements according to my liking. The code is in the .CSS file.
+	I have used CSS to style the elements according to my liking. The code is in the .CSS file.
 
 
-3.	The File Structure that you proposed didnt work out well for me. I have the build.xml file in the contactapplication folder, and when you run ant build on the terminal in that directory it successfully builds, however i am not too sure what all files you require for your structure thats why i am really sorry but i have kept this structure: 
 
-Directory structure:
-------------------
-ContactApplication/
-  build.xml
-------------------
+ Directory structure:
+ --------------------------
+ContactApplication/build.xml
 
 after you run that or before you run it i have provided my application output in the following directory: 
 
 Directory structure:
-----------------------------
+
 ContactApplication/
 	war/
   ContactApplication.html
 ---------------------------
 
-4. I hope you find the application satisfactory and i am glad i got to learn so much while building the same. Let me know where all i can improve and if i went wrong. 
+3. I hope you find the application satisfactory and i am glad i got to learn so much while building the same. Let me know where all i can improve and if i went wrong. 
 
 NOTE: 
 I also implemented the SAFEHTMLUTIL features for security measures. I understand how important security is for such web applications ,and i could implement it to protect HTML entries from hindering some of the other features.
