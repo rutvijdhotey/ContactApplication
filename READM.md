@@ -33,7 +33,7 @@ ContactApplication/
   ContactApplication.html
 ---------------------------
 
-3. I hope you find the application satisfactory and i am glad i got to learn so much while building the same. Let me know where all i can improve and if i went wrong. 
+3. I hope you find the application working correctly. Let me know where all i can improve and if i went wrong. 
 
 NOTE: 
 I also implemented the SAFEHTMLUTIL features for security measures. I understand how important security is for such web applications ,and i could implement it to protect HTML entries from hindering some of the other features.
